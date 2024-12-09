@@ -12,17 +12,16 @@
 		<description>Partial UI wrapper around Win32 DeviceIoControl function and SMBIOS information</description>
 		<releaseNotes></releaseNotes>
 		<copyright>Danila Korablin</copyright>
-		<tags>SAL,Plugin</tags>
+		<tags>SAL,Plugin,BIOS</tags>
 		<dependencies>
 			<group targetFramework="net20">
-				<dependency id="SAL.Flatbed" version="1.2.9" />
-				<dependency id="SAL.Windows" version="1.2.9" />
+				<dependency id="SAL.Windows" version="1.2.10" />
 				<dependency id="AlphaOmega.DeviceIoControl" version="1.2.2" />
 			</group>
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="readme.md" target="docs" />
+		<file src="README.md" target="docs" />
 		<!--file src="bin\net20\Plugin.DeviceInfo.xml" target="xml" /-->
 		<file src="bin\net20\Plugin.DeviceInfo.dll" target="lib\net20" />
 	</files>
