@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Xml;
 
@@ -11,10 +12,13 @@ namespace Plugin.DeviceInfo.Bll
 		private readonly String _assemblyName;
 		private readonly Dictionary<String, String> _documentationCache = new Dictionary<String, String>();
 
-		public XmlReflectionReader(String xml)
+		public XmlReflectionReader(Stream xml)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xml);
+			XmlDocument document = new XmlDocument()
+			{
+				XmlResolver = null,
+			};
+			document.Load(xml);
 			this._document = document;
 			this._assemblyName = this.QuerySingleNode("/doc/assembly/name").Trim();
 		}

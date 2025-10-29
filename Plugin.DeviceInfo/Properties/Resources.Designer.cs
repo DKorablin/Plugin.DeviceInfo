@@ -98,27 +98,5 @@ namespace Plugin.DeviceInfo.Properties {
                 return ResourceManager.GetString("NullString", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
-        ///&lt;doc&gt;
-        ///    &lt;assembly&gt;
-        ///        &lt;name&gt;SystemFirmware&lt;/name&gt;
-        ///    &lt;/assembly&gt;
-        ///    &lt;members&gt;
-        ///        &lt;member name=&quot;T:AlphaOmega.Debug.PinnedBufferReader&quot;&gt;
-        ///            &lt;summary&gt;Reader from memory allocated bytes array&lt;/summary&gt;
-        ///        &lt;/member&gt;
-        ///        &lt;member name=&quot;F:AlphaOmega.Debug.PinnedBufferReader._gcPointer&quot;&gt;
-        ///            &lt;summary&gt;Allocated handle&lt;/summary&gt;
-        ///        &lt;/member&gt;
-        ///        &lt;member name=&quot;F:AlphaOmega.Debug.PinnedBufferReader._buffer&quot;&gt;
-        ///            &lt;summary&gt;Bytes ar [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string SystemFirmware {
-            get {
-                return ResourceManager.GetString("SystemFirmware", resourceCulture);
-            }
-        }
     }
 }

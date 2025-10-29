@@ -8,7 +8,13 @@ namespace Plugin.DeviceInfo.Controls
 	{
 		private static XmlReflectionReader _XmlReader;
 		internal static XmlReflectionReader XmlReader
-			=> DdlSmBiosType._XmlReader == null ? DdlSmBiosType._XmlReader = new XmlReflectionReader(Properties.Resources.SystemFirmware) : DdlSmBiosType._XmlReader;
+		{
+			get
+			{
+				return DdlSmBiosType._XmlReader
+					?? (DdlSmBiosType._XmlReader = new XmlReflectionReader(typeof(DdlSmBiosType).Assembly.GetManifestResourceStream("SystemFirmware.xml")));
+			}
+		}
 
 		public SmBios.Type? Type { get; }
 

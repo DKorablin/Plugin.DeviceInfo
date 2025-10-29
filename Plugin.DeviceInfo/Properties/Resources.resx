@@ -65,9 +65,6 @@
   <data name="NullString" xml:space="preserve">
     <value>&lt;Null&gt;</value>
   </data>
-  <data name="SystemFirmware" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\packages\AlphaOmega.SystemFirmware.1.1.6\xml\SystemFirmware.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="FileSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Images.Shared\FileSave.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
