@@ -45,7 +45,7 @@ namespace Plugin.DeviceInfo.Controls
 				} else
 					this.DataBindI(row, rowType.Name);
 
-				//Такой код использовать нельзя. Т.к. изредка класс инкапсулирует дочерний массив
+				//This code cannot be used, because a class rarely encapsulates a child array.
 				/*IEnumerable ienum = row as IEnumerable;
 				if(ienum != null)
 				{
@@ -132,7 +132,7 @@ namespace Plugin.DeviceInfo.Controls
 				new ColumnHeader(){ Text = "Value", },
 			});
 
-			String[] subItems = Array.ConvertAll<String, String>(new String[base.Columns.Count], delegate(String a) { return String.Empty; });
+			String[] subItems = Array.ConvertAll<String, String>(new String[base.Columns.Count], a => String.Empty);
 			result.SubItems.AddRange(subItems);
 
 			result.SubItems[ReflectionListView.ColumnNameIndex].Text = name;

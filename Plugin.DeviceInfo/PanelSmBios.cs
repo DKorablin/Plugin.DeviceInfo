@@ -20,7 +20,7 @@ namespace Plugin.DeviceInfo
 
 		Object IPluginSettings.Settings { get => this.Settings; }
 
-		public PanelSmBiosSettings Settings { get { return this._settings == null ? this._settings = new PanelSmBiosSettings() : this._settings; } }
+		public PanelSmBiosSettings Settings { get => this._settings ?? (this._settings = new PanelSmBiosSettings()); }
 
 		private FirmwareT<FirmwareSmBios> Tables
 		{
@@ -42,7 +42,7 @@ namespace Plugin.DeviceInfo
 		private IWindow Window { get => (IWindow)base.Parent; }
 
 		public PanelSmBios()
-			=> InitializeComponent();
+			=> this.InitializeComponent();
 
 		protected override void OnCreateControl()
 		{

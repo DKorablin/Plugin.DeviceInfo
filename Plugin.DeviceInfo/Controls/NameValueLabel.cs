@@ -18,7 +18,7 @@ namespace Plugin.DeviceInfo.Controls
 		}
 
 		public NameValueLabel()
-			=> InitializeComponent();
+			=> this.InitializeComponent();
 
 		public void SetValue(String title, String value)
 		{

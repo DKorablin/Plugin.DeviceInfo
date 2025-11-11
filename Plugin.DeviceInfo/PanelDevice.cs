@@ -29,7 +29,7 @@ namespace Plugin.DeviceInfo
 		private IWindow Window => (IWindow)base.Parent;
 
 		public PanelDevice()
-			=> InitializeComponent();
+			=> this.InitializeComponent();
 
 		protected override void OnCreateControl()
 		{
@@ -175,7 +175,7 @@ namespace Plugin.DeviceInfo
 				} else
 					lvDisc.AutoResizeValueColumn();
 			} catch(Win32Exception exc)
-			{//Раньше это надо было чтобы не отчищался список. Но теперь он полюбому отчищается
+			{//Previously, this was necessary to prevent the list from being cleared. But now it gets cleared anyway.
 				this.Plugin.Trace.TraceData(TraceEventType.Error, 10, exc);
 				error.SetError(tsMain, exc.Message);
 			} finally
@@ -199,7 +199,7 @@ namespace Plugin.DeviceInfo
 			if(result == null)
 			{
 				result = new ListViewItem();
-				String[] subItems = Array.ConvertAll<String, String>(new String[lvSmart.Columns.Count], delegate(String a) { return String.Empty; });
+				String[] subItems = Array.ConvertAll<String, String>(new String[lvSmart.Columns.Count], a => String.Empty);
 				result.SubItems.AddRange(subItems);
 				result.SubItems[colSmartId.Index].Text = id;
 				result.SubItems[colSmartName.Index].Text = name;

@@ -37,7 +37,7 @@ namespace Plugin.DeviceInfo.Controls
 
 			this.DataBindI(row, groupName);
 
-			//Такой код использовать нельзя. Т.к. изредка класс инкапсулирует дочерний массив
+			//This code cannot be used, because a class rarely encapsulates a child array.
 			/*IEnumerable ienum = row as IEnumerable;
 			if(ienum != null)
 			{
@@ -101,7 +101,7 @@ namespace Plugin.DeviceInfo.Controls
 					switch(member.Name)
 					{
 					case "Type":
-						typeType = (PropertyInfo)member;//HACK: Грязный хак поиска структуры...
+						typeType = (PropertyInfo)member;//HACK: A Dirty Hack to Find Structure...
 						typeObject = typeType.GetValue(row, null);
 						break;
 					case "Strings":
@@ -145,7 +145,7 @@ namespace Plugin.DeviceInfo.Controls
 				new ColumnHeader(){ Text = "Value", },
 			});
 
-			String[] subItems = Array.ConvertAll<String, String>(new String[base.Columns.Count], delegate (String a) { return String.Empty; });
+			String[] subItems = Array.ConvertAll<String, String>(new String[base.Columns.Count], a => String.Empty);
 			result.SubItems.AddRange(subItems);
 
 			result.SubItems[BiosTypeListView.ColumnNameIndex].Text = name;

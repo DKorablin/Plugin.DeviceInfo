@@ -12,7 +12,7 @@ namespace Plugin.DeviceInfo.Controls
 			get
 			{
 				return DdlSmBiosType._XmlReader
-					?? (DdlSmBiosType._XmlReader = new XmlReflectionReader(typeof(DdlSmBiosType).Assembly.GetManifestResourceStream("SystemFirmware.xml")));
+					?? (DdlSmBiosType._XmlReader = new XmlReflectionReader(typeof(DdlSmBiosType).Assembly.GetManifestResourceStream("Plugin.DeviceInfo.SystemFirmware.xml")));
 			}
 		}
 

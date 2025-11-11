@@ -12,7 +12,7 @@ namespace Plugin.DeviceInfo
 		}
 
 		/// <summary>Device event type</summary>
-		public enum DBT : Int32
+		public enum DBT
 		{
 			/// <summary>A request to change the current configuration (dock or undock) has been canceled.</summary>
 			CONFIGCHANGECANCELED = 0x0019,

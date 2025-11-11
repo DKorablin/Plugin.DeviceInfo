@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Plugin.DeviceInfo.Bll;
 using SAL.Flatbed;
 using SAL.Windows;
 
@@ -60,11 +61,11 @@ namespace Plugin.DeviceInfo
 				}
 				this._menuDevice = this._menuWinApi.Create("&Device Info");
 				this._menuDevice.Name = "Tools.WinAPI.DeviceInfo";
-				this._menuDevice.Click += (sender, e) => { this.CreateWindow(typeof(PanelDevice).ToString(), true); };
+				this._menuDevice.Click += (sender, e) => this.CreateWindow(typeof(PanelDevice).ToString(), true);
 
 				this._menuFwSmb = this._menuWinApi.Create("&SMBIOS");
 				this._menuFwSmb.Name = "Tools.WinAPI.Firmware.SMBIOS";
-				this._menuFwSmb.Click += (sender, e) => { this.CreateWindow(typeof(PanelSmBios).ToString(), true); };
+				this._menuFwSmb.Click += (sender, e) => this.CreateWindow(typeof(PanelSmBios).ToString(), true);
 
 				this._menuWinApi.Items.AddRange(new IMenuItem[] { this._menuDevice, this._menuFwSmb });
 				return true;
@@ -79,6 +80,8 @@ namespace Plugin.DeviceInfo
 				this.HostWindows.MainMenu.Items.Remove(this._menuFwSmb);
 			if(this._menuWinApi != null && this._menuWinApi.Items.Count == 0)
 				this.HostWindows.MainMenu.Items.Remove(this._menuWinApi);
+
+			NodeExtender.DisposeFonts();
 			return true;
 		}
 

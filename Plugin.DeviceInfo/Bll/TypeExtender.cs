@@ -27,11 +27,6 @@ namespace Plugin.DeviceInfo
 			}
 		}
 
-		public static String FormatValue(Object value, Boolean showAsHex)
-			=> value == null
-				? null
-				: TypeExtender.FormatValue(value.GetType(), value, showAsHex);
-
 		public static Object GetMemberValue(this MemberInfo member, Object obj)
 		{
 			switch(member.MemberType)
@@ -45,6 +40,11 @@ namespace Plugin.DeviceInfo
 			}
 		}
 
+		public static String FormatValue(Object value, Boolean showAsHex)
+			=> value == null
+				? null
+				: TypeExtender.FormatValue(value.GetType(), value, showAsHex);
+
 		public static String FormatValue(this MemberInfo info, Object value, Boolean showAsHex)
 		{
 			if(value == null)
@@ -54,22 +54,21 @@ namespace Plugin.DeviceInfo
 
 			if(type.IsEnum)
 				return value.ToString();
-			else if(type==typeof(Char))
+			else if(type == typeof(Char))
 				switch((Char)value)
-					{
-					case '\'':	return "\\\'";
-					case '\"':	return "\\\"";
-					case '\0':	return "\\0";
-					case '\a':	return "\\a";
-					case '\b':	return "\\b";
-					case '\f':	return "\\b";
-					case '\t':	return "\\t";
-					case '\n':	return "\\n";
-					case '\r':	return "\\r";
-					case '\v':	return "\\v";
-					default:	return value.ToString();
-					}
-			else if(value is IFormattable)
+				{
+				case '\'': return "\\\'";
+				case '\"': return "\\\"";
+				case '\0': return "\\0";
+				case '\a': return "\\a";
+				case '\b': return "\\b";
+				case '\f': return "\\b";
+				case '\t': return "\\t";
+				case '\n': return "\\n";
+				case '\r': return "\\r";
+				case '\v': return "\\v";
+				default: return value.ToString();
+				} else if(value is IFormattable fValue)
 			{
 				switch(Convert.GetTypeCode(value))
 				{
@@ -84,18 +83,16 @@ namespace Plugin.DeviceInfo
 				case TypeCode.Single:
 				case TypeCode.Double:
 				case TypeCode.Decimal:
-					if(showAsHex)
-						return "0x" + ((IFormattable)value).ToString("X", CultureInfo.CurrentCulture);
-					else
-						return ((IFormattable)value).ToString("n0", CultureInfo.CurrentCulture);
+					return showAsHex
+						? "0x" + fValue.ToString("X", CultureInfo.CurrentCulture)
+						: fValue.ToString("n0", CultureInfo.CurrentCulture);
 				default:
 					return value.ToString();
 				}
-			}
-			else
+			} else
 			{
 				Type elementType = type.HasElementType ? type.GetElementType() : null;
-				if(elementType != null && type.BaseType == typeof(Array) && (elementType.IsPrimitive || elementType==typeof(String)))
+				if(elementType != null && type.BaseType == typeof(Array) && (elementType.IsPrimitive || elementType == typeof(String)))
 				{
 					Int32 index = 0;
 					Array arr = (Array)value;
@@ -113,7 +110,7 @@ namespace Plugin.DeviceInfo
 					}
 					values.Append("}");
 					return values.ToString();
-				}else
+				} else
 					return value.ToString();
 			}
 		}
