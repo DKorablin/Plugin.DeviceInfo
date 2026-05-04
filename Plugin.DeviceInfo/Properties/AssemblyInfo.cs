@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 [assembly: System.CLSCompliant(true)]
 
 [assembly: AssemblyDescription("HDD device info and System Management BIOS info")]
-[assembly: AssemblyCopyright("Copyright © Danila Korablin 2013-2025")]
 
 /*if $(ConfigurationName) == Release (
 ..\..\..\..\ILMerge.exe  "/out:$(ProjectDir)..\bin\Plugin.DeviceInfo.dll" "$(TargetDir)Plugin.DeviceInfo.dll" "$(TargetDir)DeviceIoControl.dll" "/lib:..\..\..\SAL\bin"

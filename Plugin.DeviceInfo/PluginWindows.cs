@@ -10,13 +10,12 @@ namespace Plugin.DeviceInfo
 	public class PluginWindows : IPlugin
 	{
 		private readonly IHost _host;
-		private TraceSource _trace;
 		private Dictionary<String, DockState> _documentTypes;
 		private IMenuItem _menuWinApi;
 		private IMenuItem _menuDevice;
 		private IMenuItem _menuFwSmb;
 
-		internal TraceSource Trace => this._trace ?? (this._trace = PluginWindows.CreateTraceSource<PluginWindows>());
+		internal ITraceSource Trace { get; }
 
 		private IHostWindows HostWindows => this._host as IHostWindows;
 		private Dictionary<String, DockState> DocumentTypes
@@ -33,8 +32,11 @@ namespace Plugin.DeviceInfo
 			}
 		}
 
-		public PluginWindows(IHost host)
-			=> this._host = host ?? throw new ArgumentNullException(nameof(host));
+		public PluginWindows(IHost host, ITraceSource trace)
+		{
+			this._host = host ?? throw new ArgumentNullException(nameof(host));
+			this.Trace = trace ?? throw new ArgumentNullException(nameof(trace));
+		}
 
 		Boolean IPlugin.OnConnection(ConnectMode mode)
 		{
@@ -92,14 +94,5 @@ namespace Plugin.DeviceInfo
 			=> this.DocumentTypes.TryGetValue(typeName, out DockState state)
 				? this.HostWindows.Windows.CreateWindow(this, typeName, searchForOpened, state, args)
 				: null;
-
-		private static TraceSource CreateTraceSource<T>(String name = null) where T : IPlugin
-		{
-			TraceSource result = new TraceSource(typeof(T).Assembly.GetName().Name + name);
-			result.Switch.Level = SourceLevels.All;
-			result.Listeners.Remove("Default");
-			result.Listeners.AddRange(System.Diagnostics.Trace.Listeners);
-			return result;
-		}
 	}
 }
