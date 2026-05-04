@@ -38,7 +38,8 @@ namespace Plugin.DeviceInfo
 
 		private const String Caption = "System Management BIOS";
 
-		private PluginWindows Plugin { get => (PluginWindows)this.Window.Plugin; }
+		private PluginWindows Plugin { get => (PluginWindows)this.Window.Plugin.Instance; }
+
 		private IWindow Window { get => (IWindow)base.Parent; }
 
 		public PanelSmBios()
